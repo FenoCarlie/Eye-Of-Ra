@@ -14,8 +14,8 @@
 ```plaintext
 EyeOfRa/
 │
-├── services/
-│   ├── drive-service/
+├── service/
+│   ├── drive/
 │   │   ├── src/
 │   │   │   ├── controllers/
 │   │   │   ├── models/
@@ -25,7 +25,7 @@ EyeOfRa/
 │   │   │   ├── index.js
 │   │   └── package.json
 │   │
-│   ├── streaming-service/
+│   ├── streaming/
 │   │   ├── src/
 │   │   │   ├── controllers/
 │   │   │   ├── models/
@@ -35,7 +35,7 @@ EyeOfRa/
 │   │   │   ├── index.js
 │   │   └── package.json
 │   │
-│   ├── user-service/
+│   ├── user/
 │   │   ├── src/
 │   │   │   ├── controllers/
 │   │   │   ├── models/
@@ -45,7 +45,7 @@ EyeOfRa/
 │   │   │   ├── index.js
 │   │   └── package.json
 │   │
-│   ├── media-management-service/
+│   ├── media-management/
 │   │   ├── src/
 │   │   │   ├── controllers/
 │   │   │   ├── models/
@@ -55,7 +55,7 @@ EyeOfRa/
 │   │   │   ├── index.js
 │   │   └── package.json
 │   │
-│   └── notification-service/
+│   └── notification/
 │       ├── src/
 │       │   ├── controllers/
 │       │   ├── models/
