@@ -3,11 +3,19 @@ import { LiaEyeSlashSolid, LiaEyeSolid } from "react-icons/lia";
 import { MdOutlinePermIdentity } from "react-icons/md";
 import { useLanguage } from "../../../contexts/LanguageContext";
 import { useNotificationContext } from "../../../contexts/NotificationContext";
+import { useAuthentContext } from "../../../contexts/AuthentContext";
+import { Navigate } from "react-router-dom";
 function LogIn() {
+  const { token } = useAuthentContext();
   const field = useRef();
   const { translate } = useLanguage();
   const { addNotification } = useNotificationContext();
   const [passwordType, setPasswordType] = useState("password");
+
+  // Rediriger vers /login si le token est absent
+  if (token) {
+    return <Navigate to="/" />;
+  }
 
   const switchPassword = () => {
     setPasswordType((prevType) =>

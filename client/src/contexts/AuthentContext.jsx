@@ -15,9 +15,11 @@ export const AuthentContext = ({ children }) => {
   const [user, setUser] = useState(() =>
     JSON.parse(sessionStorage.getItem("ACCESS_USER"))
   );
-  const [token, setToken] = useState(() =>
-    sessionStorage.getItem("ACCESS_TOKEN")
-  );
+  // const [token, setToken] = useState(() =>
+  //   sessionStorage.getItem("ACCESS_TOKEN")
+  // );
+
+  const [token, setToken] = useState(1234);
 
   // Fonction pour mettre à jour l'utilisateur et gérer sessionStorage
   const updateUser = (user) => {
