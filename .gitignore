@@ -1,0 +1,74 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+package-lock.json
+yarn.lock
+*.log
+
+# Environment files
+.env
+.env.*
+*.env
+
+# Build output
+build/
+dist/
+coverage/
+
+# Docker
+docker-compose.override.yml
+docker-compose.dev.yml
+Dockerfile
+docker-compose.yml
+
+# Vite
+.vite/
+
+# Next.js
+.next/
+out/
+
+# Frontend specific
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.next/
+frontend/build/
+
+# Microservices
+services/*/node_modules/
+services/*/build/
+services/*/dist/
+services/*/coverage/
+
+# VS Code
+.vscode/
+*.code-workspace
+.history
+
+# IDEs and editors
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Logs
+*.log
+
+# Misc
+*.swp
+*.swo
+*.swn
+
+# Other
+*.tgz
+*.zip
+*.tar.gz
