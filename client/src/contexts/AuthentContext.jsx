@@ -1,17 +1,17 @@
-import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
-// Create a context with initial values for currentUser, token,
-// setUser, setToken functions
+// Créer un contexte avec des valeurs initiales pour currentUser, token,
+// et des fonctions setUser, setToken
 const StateContext = createContext({
-  currentUser: null,
+  user: null,
   token: null,
   setUser: () => {},
   setToken: () => {},
 });
 
-// Context provider component to manage state and provide context values
+// Composant fournisseur de contexte pour gérer l'état et fournir les valeurs du contexte
 export const AuthentContext = ({ children }) => {
-  // State variables for user, token initialized from sessionStorage
+  // Variables d'état pour l'utilisateur et le token, initialisées à partir de sessionStorage
   const [user, setUser] = useState(() =>
     JSON.parse(sessionStorage.getItem("ACCESS_USER"))
   );
@@ -19,30 +19,27 @@ export const AuthentContext = ({ children }) => {
     sessionStorage.getItem("ACCESS_TOKEN")
   );
 
-  // Memoized versions of setUser, setToken functions
-  const memoizedSetUser = useMemo(() => {
-    return (user) => {
-      setUser(user);
-      if (user) {
-        sessionStorage.setItem("ACCESS_USER", JSON.stringify(user));
-      } else {
-        sessionStorage.removeItem("ACCESS_USER");
-      }
-    };
-  }, []);
+  // Fonction pour mettre à jour l'utilisateur et gérer sessionStorage
+  const updateUser = (user) => {
+    setUser(user);
+    if (user) {
+      sessionStorage.setItem("ACCESS_USER", JSON.stringify(user));
+    } else {
+      sessionStorage.removeItem("ACCESS_USER");
+    }
+  };
 
-  const memoizedSetToken = useMemo(() => {
-    return (token) => {
-      setToken(token);
-      if (token) {
-        sessionStorage.setItem("ACCESS_TOKEN", token);
-      } else {
-        sessionStorage.removeItem("ACCESS_TOKEN");
-      }
-    };
-  }, []);
+  // Fonction pour mettre à jour le token et gérer sessionStorage
+  const updateToken = (token) => {
+    setToken(token);
+    if (token) {
+      sessionStorage.setItem("ACCESS_TOKEN", token);
+    } else {
+      sessionStorage.removeItem("ACCESS_TOKEN");
+    }
+  };
 
-  // Effect to clear sessionStorage after 4 hours (session timeout)
+  // Effet pour effacer sessionStorage après 4 heures (expiration de session)
   useEffect(() => {
     const sessionTimeout = setTimeout(() => {
       sessionStorage.clear();
@@ -51,14 +48,14 @@ export const AuthentContext = ({ children }) => {
     return () => clearTimeout(sessionTimeout);
   }, []);
 
-  // Provide state values and memoized update functions to the context
+  // Fournir les valeurs d'état et les fonctions de mise à jour au contexte
   return (
     <StateContext.Provider
       value={{
         user,
-        setUser: memoizedSetUser,
+        setUser: updateUser,
         token,
-        setToken: memoizedSetToken,
+        setToken: updateToken,
       }}
     >
       {children}
@@ -66,5 +63,5 @@ export const AuthentContext = ({ children }) => {
   );
 };
 
-// Custom hook to access context values in functional components
-export const useAuthentContext = () => useContext(AuthentContext);
+// Hook personnalisé pour accéder aux valeurs du contexte dans les composants fonctionnels
+export const useAuthentContext = () => useContext(StateContext);

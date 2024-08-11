@@ -10,7 +10,7 @@
   color: $color-text-dark;
 }
 
-main {
+body {
   @include theme-light;
 
   .dark & {

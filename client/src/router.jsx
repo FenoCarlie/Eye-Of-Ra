@@ -8,12 +8,18 @@ import StreamHome from "./services/streaming/StreamHome";
 import User from "./services/user/User";
 import LogIn from "./services/user/auth/LogIn";
 import NotFundPage from "./components/NotFundPage";
+import AuthGuard from "./components/AuthGuard";
+import UserManage from "./services/user/management/UserManage";
 
 // Defining routes with their respective layouts
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <AuthGuard>
+        <App />
+      </AuthGuard>
+    ),
     children: [
       { path: "/", element: <Navigate to="/home" /> },
       { path: "/home", element: <Home /> },
@@ -21,7 +27,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Drive />,
+    element: (
+      <AuthGuard>
+        <Drive />
+      </AuthGuard>
+    ),
     children: [
       { path: "/", element: <Navigate to="/drive" /> },
       { path: "/drive", element: <DriveHome /> },
@@ -29,7 +39,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <Stream />,
+    element: (
+      <AuthGuard>
+        <Stream />
+      </AuthGuard>
+    ),
     children: [
       { path: "/", element: <Navigate to="/stream" /> },
       { path: "/stream", element: <StreamHome /> },
@@ -37,11 +51,19 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <User />,
+    element: (
+      <AuthGuard>
+        <User />
+      </AuthGuard>
+    ),
     children: [
-      { path: "/", element: <Navigate to="/login" /> },
-      { path: "/login", element: <LogIn /> },
+      { path: "/", element: <Navigate to="/user" /> },
+      { path: "/user", element: <UserManage /> },
     ],
+  },
+  {
+    path: "/login",
+    element: <LogIn />,
   },
   {
     path: "*",

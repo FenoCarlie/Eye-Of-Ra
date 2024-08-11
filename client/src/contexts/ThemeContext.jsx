@@ -8,7 +8,7 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   // Initialize the theme from sessionStorage or default to "light"
   const [theme, setTheme] = useState(() => {
-    return sessionStorage.getItem("theme") || "dark";
+    return sessionStorage.getItem("theme") || "light";
   });
 
   useEffect(() => {
