@@ -53,12 +53,7 @@ function LogIn() {
       className="w-full h-screen flex items-center justify-center"
     >
       <div className="flex flex-col items-center justify-center w-auto h-auto font-barlow bg-gray-800 p-14 rounded-md">
-        <h1 className="absolute top-48 text-white text-5xl font-northwell">
-          Eye Of Ra
-        </h1>
-        <label className="text-white text-2xl border-b-[1px] border-[#4e5b6dbd]">
-          {translate(`button.authenticate`)}
-        </label>
+        <label className="text-white text-5xl font-paraoh">Eye Of Ra</label>
         <form
           ref={field}
           onSubmit={authenticate}
